@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferrum AI — Status</title>
+<style>
+  :root{
+    --bg:#05070c; --panel:#0b101c; --panel2:#0e1524; --line:rgba(212,175,55,.25);
+    --gold:#d4af37; --gold2:#b8912f; --ink:#e9eef7; --ink2:#9fb0c7; --ink3:#5f7189;
+    --green:#2ecc71; --red:#e74c3c; --orange:#e67e22;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background-image:radial-gradient(1200px 500px at 50% -80px, rgba(212,175,55,.08), transparent 60%);}
+  .wrap{max-width:1060px;margin:0 auto;padding:28px 18px 46px}
+  header{text-align:center;padding:16px 0 8px}
+  .brand{font-family:Georgia,'Times New Roman',serif;letter-spacing:6px;font-size:15px;color:var(--gold)}
+  h1{margin:6px 0 2px;font-size:34px;letter-spacing:3px;font-weight:700}
+  .sub{color:var(--ink2);font-size:13px;letter-spacing:1px}
+  .banner{margin:22px 0 6px;border:1px solid var(--line);border-radius:12px;
+    padding:18px 20px;text-align:center;background:var(--panel)}
+  .banner .big{font-size:22px;font-weight:700;letter-spacing:2px}
+  .banner.ok .big{color:var(--green)}
+  .banner.bad .big{color:var(--red)}
+  .banner .detail{color:var(--ink2);font-size:13px;margin-top:5px}
+  .updated{text-align:center;color:var(--ink3);font-size:12px;margin-top:8px;letter-spacing:.5px}
+  h2{font-size:13px;letter-spacing:3px;color:var(--gold);margin:30px 0 12px;border-bottom:1px solid var(--line);padding-bottom:7px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid rgba(120,150,200,.16);border-radius:12px;padding:16px 18px}
+  .card .name{font-size:20px;font-weight:700;letter-spacing:2px}
+  .card .status{font-size:12px;font-weight:700;letter-spacing:2px;margin:3px 0 12px}
+  .st-operational{color:var(--green)} .st-partial{color:var(--orange)} .st-down{color:var(--red)} .st-none{color:var(--ink3)}
+  .svc{display:flex;align-items:center;gap:9px;padding:5px 0;border-top:1px solid rgba(120,150,200,.08);font-size:14px}
+  .svc:first-of-type{border-top:none}
+  .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .dot.up{background:var(--green);box-shadow:0 0 7px rgba(46,204,113,.8)}
+  .dot.down{background:var(--red);box-shadow:0 0 7px rgba(231,76,60,.8)}
+  .svc .state{margin-left:auto;font-size:11px;letter-spacing:1.5px;color:var(--ink2)}
+  .svc.down .state{color:var(--red)}
+  .note{color:var(--ink2);font-size:13px;line-height:1.5}
+  .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+  footer{margin-top:34px;text-align:center;color:var(--ink3);font-size:12px;line-height:1.7}
+  footer .fb{color:var(--gold2);letter-spacing:3px;font-size:11px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">F E R R U M</div>
+    <h1>AI STATUS</h1>
+    <div class="sub">Jarvis &middot; Echo &middot; Onyx &middot; and every service behind them</div>
+  </header>
+
+  <div class="banner" id="banner">
+    <div class="big" id="bannerBig">CHECKING&hellip;</div>
+    <div class="detail" id="bannerDetail">Reading the latest patrol state.</div>
+  </div>
+  <div class="updated" id="updated"></div>
+
+  <h2>THE AIS</h2>
+  <div class="cards" id="ais"></div>
+
+  <h2>NOT MONITORED — NO LIVE SERVICE</h2>
+  <div class="cards" id="nosvc"></div>
+
+  <h2>EVERYTHING UNDER THE HOOD</h2>
+  <div class="board" id="board"></div>
+
+  <footer>
+    <div class="fb">FERRUM</div>
+    Watched around the clock by Watchdog v3.6 — this page shows its last confirmed patrol state,<br>
+    the same state behind every outage message. Patrols run every 5 minutes.
+  </footer>
+</div>
+
+<script>
+'use strict';
+const ST_WORD = { operational: 'OPERATIONAL', partial: 'PARTIAL OUTAGE', down: 'DOWN', none: 'NOT MONITORED' };
+function svcRow(s){
+  return '<div class="svc' + (s.up ? '' : ' down') + '"><span class="dot ' + (s.up ? 'up' : 'down') + '"></span>' +
+    '<span>' + s.name + '</span><span class="state">' + (s.up ? 'UP' : 'DOWN') + '</span></div>';
+}
+function card(title, status, inner){
+  return '<div class="card"><div class="name">' + title + '</div>' +
+    '<div class="status st-' + status + '">' + ST_WORD[status] + '</div>' + inner + '</div>';
+}
+async function load(){
+  try {
+    const res = await fetch('status.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const d = await res.json();
+    const banner = document.getElementById('banner');
+    banner.className = 'banner ' + (d.overall === 'operational' ? 'ok' : 'bad');
+    document.getElementById('bannerBig').textContent =
+      d.overall === 'operational' ? 'ALL SYSTEMS OPERATIONAL' : 'OUTAGE — ' + d.down_names.length + ' SERVICE' + (d.down_names.length === 1 ? '' : 'S') + ' DOWN';
+    document.getElementById('bannerDetail').textContent =
+      d.overall === 'operational'
+        ? 'Every AI and every service behind them is up.'
+        : 'Down right now: ' + d.down_names.join(' · ') + ' — ' + d.up_count + ' of ' + d.total + ' services still up.';
+    const when = new Date(d.updated_at);
+    document.getElementById('updated').textContent =
+      'Last updated ' + when.toLocaleString('en-US', { timeZone: 'America/New_York', dateStyle: 'medium', timeStyle: 'medium' }) + ' ET · Source: ' + d.source;
+    document.getElementById('ais').innerHTML =
+      d.ais.map(a => card(a.name.toUpperCase(), a.status, a.services.map(svcRow).join(''))).join('');
+    document.getElementById('nosvc').innerHTML =
+      d.no_service.map(a => card(a.name.toUpperCase(), 'none', '<div class="note">' + a.note + '</div>')).join('');
+    document.getElementById('board').innerHTML =
+      d.board.map(g => card(g.name.toUpperCase(), g.status, g.services.map(svcRow).join(''))).join('');
+  } catch (e) {
+    document.getElementById('bannerBig').textContent = 'STATUS UNAVAILABLE';
+    document.getElementById('bannerDetail').textContent = 'The status data could not be loaded (' + e.message + '). Try again in a moment.';
+  }
+}
+load();
+setInterval(load, 60000);
+</script>
+</body>
+</html>
