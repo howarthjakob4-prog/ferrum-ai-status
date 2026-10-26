@@ -1,0 +1,167 @@
+{
+ "updated_at": "2026-10-26T10:55:06.296444+00:00",
+ "source": "Watchdog v3.6 \u2014 last confirmed patrol state",
+ "overall": "outage",
+ "up_count": 18,
+ "total": 21,
+ "down_names": [
+  "Jarvis \u2014 phone companion",
+  "SFX Forge (lab)",
+  "SoftGPU (lab)"
+ ],
+ "ais": [
+  {
+   "name": "Jarvis",
+   "status": "partial",
+   "services": [
+    {
+     "key": "jarvis-linux",
+     "name": "Jarvis \u2014 Linux seat",
+     "up": true
+    },
+    {
+     "key": "jarvis-phone",
+     "name": "Jarvis \u2014 phone companion",
+     "up": false
+    }
+   ]
+  },
+  {
+   "name": "Echo",
+   "status": "operational",
+   "services": [
+    {
+     "key": "echo-wren",
+     "name": "Echo \u2014 Wren link",
+     "up": true
+    },
+    {
+     "key": "echo-phone",
+     "name": "Echo \u2014 phone",
+     "up": true
+    },
+    {
+     "key": "echo",
+     "name": "Echo \u2014 server",
+     "up": true
+    },
+    {
+     "key": "echo-blocker",
+     "name": "Echo \u2014 website blocker",
+     "up": true
+    }
+   ]
+  },
+  {
+   "name": "Onyx",
+   "status": "operational",
+   "services": [
+    {
+     "key": "onyx",
+     "name": "Onyx \u2014 app",
+     "up": true
+    },
+    {
+     "key": "onyx-brain",
+     "name": "Onyx \u2014 brain",
+     "up": true
+    }
+   ]
+  }
+ ],
+ "board": [
+  {
+   "name": "Ferrum Platform",
+   "status": "operational",
+   "services": [
+    {
+     "key": "ferrum",
+     "name": "Ferrum Computer",
+     "up": true
+    },
+    {
+     "key": "ferrum-horizon",
+     "name": "Ferrum Horizon",
+     "up": true
+    },
+    {
+     "key": "ferrum-relay",
+     "name": "Ferrum Relay",
+     "up": true
+    },
+    {
+     "key": "ferrum-studio",
+     "name": "Ferrum Studio",
+     "up": true
+    },
+    {
+     "key": "ticket-center",
+     "name": "Ticket Center",
+     "up": true
+    }
+   ]
+  },
+  {
+   "name": "Ferrum Anvil",
+   "status": "operational",
+   "services": [
+    {
+     "key": "ferrum-anvil",
+     "name": "Ferrum Anvil \u2014 studio",
+     "up": true
+    },
+    {
+     "key": "ferrum-anvil-mcp",
+     "name": "Ferrum Anvil \u2014 tool link",
+     "up": true
+    },
+    {
+     "key": "forge-ui",
+     "name": "Forge \u2014 studio UI",
+     "up": true
+    }
+   ]
+  },
+  {
+   "name": "Lab",
+   "status": "partial",
+   "services": [
+    {
+     "key": "anythingllm-api",
+     "name": "AnythingLLM \u2014 collector",
+     "up": true
+    },
+    {
+     "key": "anythingllm-web",
+     "name": "AnythingLLM \u2014 web",
+     "up": true
+    },
+    {
+     "key": "ollama",
+     "name": "Ollama \u2014 local brains",
+     "up": true
+    },
+    {
+     "key": "sfx-forge",
+     "name": "SFX Forge (lab)",
+     "up": false
+    },
+    {
+     "key": "softgpu-lab",
+     "name": "SoftGPU (lab)",
+     "up": false
+    }
+   ]
+  }
+ ],
+ "no_service": [
+  {
+   "name": "Ultron",
+   "note": "Desktop assistant \u2014 Windows app in development. No live service to monitor yet."
+  },
+  {
+   "name": "Ferron",
+   "note": "Lives in the Ferrum Spark keychain gadget. No live service to monitor."
+  }
+ ]
+}
