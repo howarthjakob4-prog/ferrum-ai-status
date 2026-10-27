@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-27T22:45:16.870561+00:00",
+ "updated_at": "2026-10-27T22:49:44.738266+00:00",
  "source": "Watchdog v3.6 \u2014 last confirmed patrol state",
  "overall": "outage",
  "up_count": 18,
@@ -64,6 +64,27 @@
     {
      "key": "onyx-brain",
      "name": "Onyx \u2014 brain",
+     "up": true
+    }
+   ]
+  },
+  {
+   "name": "Bluey",
+   "status": "operational",
+   "services": [
+    {
+     "key": "bluey-brain",
+     "name": "Bluey brain",
+     "up": true
+    },
+    {
+     "key": "bluey-phone",
+     "name": "Bluey phone page",
+     "up": true
+    },
+    {
+     "key": "bluey-host",
+     "name": "Bluey pairing host",
      "up": true
     }
    ]
