@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-27T23:40:10.608221+00:00",
+ "updated_at": "2026-10-28T00:00:13.635104+00:00",
  "source": "Watchdog v3.6 \u2014 last confirmed patrol state",
  "overall": "outage",
  "up_count": 18,
@@ -70,22 +70,22 @@
   },
   {
    "name": "Bluey",
-   "status": "operational",
+   "status": "down",
    "services": [
     {
      "key": "bluey-brain",
      "name": "Bluey brain",
-     "up": true
+     "up": false
     },
     {
      "key": "bluey-phone",
      "name": "Bluey phone page",
-     "up": true
+     "up": false
     },
     {
      "key": "bluey-host",
      "name": "Bluey pairing host",
-     "up": true
+     "up": false
     }
    ]
   }
