@@ -1,12 +1,13 @@
 {
- "updated_at": "2026-10-28T19:45:16.417723+00:00",
+ "updated_at": "2026-10-28T20:00:17.144012+00:00",
  "source": "Watchdog v3.6 \u2014 last confirmed patrol state",
  "overall": "outage",
- "up_count": 19,
+ "up_count": 18,
  "total": 21,
  "down_names": [
   "Jarvis \u2014 phone companion",
-  "SFX Forge (lab)"
+  "SFX Forge (lab)",
+  "SoftGPU (lab)"
  ],
  "ais": [
   {
@@ -169,7 +170,7 @@
     {
      "key": "softgpu-lab",
      "name": "SoftGPU (lab)",
-     "up": true
+     "up": false
     }
    ]
   }
