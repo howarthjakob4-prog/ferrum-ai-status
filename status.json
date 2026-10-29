@@ -1,17 +1,16 @@
 {
- "updated_at": "2026-10-29T21:30:10.586385+00:00",
+ "updated_at": "2026-10-29T22:14:13.293161+00:00",
  "source": "Watchdog v3.6 \u2014 last confirmed patrol state",
  "overall": "outage",
- "up_count": 19,
+ "up_count": 20,
  "total": 21,
  "down_names": [
-  "Jarvis \u2014 phone companion",
   "SFX Forge (lab)"
  ],
  "ais": [
   {
    "name": "Jarvis",
-   "status": "partial",
+   "status": "operational",
    "services": [
     {
      "key": "jarvis-linux",
@@ -21,7 +20,7 @@
     {
      "key": "jarvis-phone",
      "name": "Jarvis \u2014 phone companion",
-     "up": false
+     "up": true
     }
    ]
   },
