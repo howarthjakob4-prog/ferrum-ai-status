@@ -1,11 +1,12 @@
 {
- "updated_at": "2026-11-03T15:15:15.043838+00:00",
+ "updated_at": "2026-11-03T16:05:09.965045+00:00",
  "source": "Watchdog v3.6 \u2014 last confirmed patrol state",
  "overall": "outage",
- "up_count": 20,
+ "up_count": 19,
  "total": 21,
  "down_names": [
-  "SFX Forge (lab)"
+  "SFX Forge (lab)",
+  "SoftGPU (lab)"
  ],
  "ais": [
   {
@@ -168,7 +169,7 @@
     {
      "key": "softgpu-lab",
      "name": "SoftGPU (lab)",
-     "up": true
+     "up": false
     }
    ]
   }
