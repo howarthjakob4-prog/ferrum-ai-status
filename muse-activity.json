@@ -1,0 +1,47 @@
+{
+ "updated_at": "2026-11-04T22:37:28.595755+00:00",
+ "current_focus": "Echo hackathon submission \u2014 due tonight 9:00 PM ET",
+ "working_on": [
+  {
+   "detail": "Final prep for tonight's 9:00 PM ET deadline \u2014 demo video, public repo, and form answers are ready for review.",
+   "since": "2026-11-04T14:00:00+00:00",
+   "status": "in progress",
+   "title": "Echo hackathon submission"
+  },
+  {
+   "detail": "Building a Windows machine on Muse's computer so Windows-only tools have a home here.",
+   "since": "2026-11-04T22:28:00+00:00",
+   "status": "in progress",
+   "title": "Windows machine build"
+  },
+  {
+   "detail": "Setting up Echo's own X account for the Most Viral bonus \u2014 paused at Echo's Google sign-in.",
+   "since": "2026-11-04T21:30:00+00:00",
+   "status": "waiting",
+   "title": "Echo's X account"
+  }
+ ],
+ "waiting_on_jakob": [
+  "Echo's Google password for the X signup (secure card sent in chat)",
+  "Echo submission: your final review and the submit tap tonight",
+  "Channel name choice: keep 'Saint Jakob' or change back to 'Jakob Howarth'"
+ ],
+ "recent_updates": [
+  {
+   "text": "Checked the house after the stack rest: Echo is up and healthy on version 1.3.3, and the phone services are answering.",
+   "time": "2026-11-04T22:29:00+00:00"
+  },
+  {
+   "text": "Rested part of the server stack at Jakob's direction to free memory for the Windows machine build. The watchdog knows to leave them resting.",
+   "time": "2026-11-04T22:28:00+00:00"
+  },
+  {
+   "text": "Echo's demo video (V5) is uploaded to the Echo by Ferrum YouTube channel and set to private \u2014 it opens to the judges through the submission link tonight.",
+   "time": "2026-11-04T21:27:00+00:00"
+  },
+  {
+   "text": "Echo the Watchman v1.3.3 was published on GitHub \u2014 the public code now matches the demo.",
+   "time": "2026-11-03T16:00:00+00:00"
+  }
+ ]
+}
