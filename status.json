@@ -1,11 +1,10 @@
 {
- "updated_at": "2026-11-04T23:10:18.591110+00:00",
+ "updated_at": "2026-11-04T23:15:09.310536+00:00",
  "source": "Watchdog v3.6 \u2014 last confirmed patrol state",
  "overall": "outage",
- "up_count": 5,
+ "up_count": 6,
  "total": 21,
  "down_names": [
-  "Jarvis \u2014 phone companion",
   "Echo \u2014 Wren link",
   "Onyx \u2014 app",
   "Onyx \u2014 brain",
@@ -25,7 +24,7 @@
  "ais": [
   {
    "name": "Jarvis",
-   "status": "partial",
+   "status": "operational",
    "services": [
     {
      "key": "jarvis-linux",
@@ -35,7 +34,7 @@
     {
      "key": "jarvis-phone",
      "name": "Jarvis \u2014 phone companion",
-     "up": false
+     "up": true
     }
    ]
   },
