@@ -45,27 +45,81 @@
   .svc.down .state{color:var(--red)}
   .note{color:var(--ink2);font-size:13px;line-height:1.5}
   .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-  .muse-panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
-  .focus{font-size:17px;font-weight:600;line-height:1.45}
-  .focus-label{display:block;font-size:11px;letter-spacing:2.5px;color:var(--gold);font-weight:700;margin-bottom:4px}
-  .muse-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 22px;margin-top:16px}
+  /* --- Muse command desk: starfield panel, glowing metric tiles,
+     skill-button work cards. Ferrum black & gold throughout. --- */
+  .mx-desk{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    background:radial-gradient(900px 380px at 50% -120px, rgba(212,175,55,.10), transparent 60%),
+               linear-gradient(180deg,#070b16,#05070c);
+    box-shadow:0 0 28px rgba(212,175,55,.07)}
+  .mx-stars{position:absolute;inset:0;pointer-events:none}
+  .mx-stars i{position:absolute;inset:0;background-repeat:repeat}
+  .mx-stars .s1{background-image:
+      radial-gradient(1px 1px at 25px 35px, rgba(255,255,255,.95) 50%, transparent 52%),
+      radial-gradient(1px 1px at 75px 120px, rgba(255,255,255,.65) 50%, transparent 52%),
+      radial-gradient(1.5px 1.5px at 140px 60px, rgba(255,255,255,.85) 50%, transparent 52%),
+      radial-gradient(1px 1px at 110px 160px, rgba(255,255,255,.55) 50%, transparent 52%),
+      radial-gradient(1px 1px at 168px 22px, rgba(255,255,255,.75) 50%, transparent 52%);
+    background-size:190px 190px;animation:mxdrift 90s linear infinite alternate}
+  .mx-stars .s2{background-image:
+      radial-gradient(2px 2px at 60px 90px, rgba(212,175,55,.9) 50%, transparent 52%),
+      radial-gradient(1.5px 1.5px at 200px 40px, rgba(255,255,255,.8) 50%, transparent 52%),
+      radial-gradient(2px 2px at 255px 190px, rgba(212,175,55,.65) 50%, transparent 52%),
+      radial-gradient(1.5px 1.5px at 130px 240px, rgba(255,255,255,.7) 50%, transparent 52%);
+    background-size:300px 300px;animation:mxdrift 140s linear infinite alternate-reverse, mxtwinkle 7s ease-in-out infinite}
+  .mx-stars .s3{background-image:
+      radial-gradient(1px 1px at 15px 55px, rgba(200,218,255,.6) 50%, transparent 52%),
+      radial-gradient(1px 1px at 55px 15px, rgba(255,255,255,.5) 50%, transparent 52%),
+      radial-gradient(1px 1px at 90px 85px, rgba(200,218,255,.45) 50%, transparent 52%),
+      radial-gradient(1px 1px at 40px 100px, rgba(255,255,255,.55) 50%, transparent 52%);
+    background-size:110px 110px;opacity:.6}
+  @keyframes mxdrift{from{background-position:0 0}to{background-position:64px 34px}}
+  @keyframes mxtwinkle{0%,100%{opacity:1}50%{opacity:.45}}
+  .mx-inner{position:relative;z-index:1;padding:20px}
+  .mx-focus{border:1px solid rgba(212,175,55,.42);border-radius:12px;padding:16px 18px;
+    background:rgba(9,13,24,.66);
+    box-shadow:0 0 22px rgba(212,175,55,.12), inset 0 0 24px rgba(212,175,55,.05)}
+  .mx-focus-label{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:800}
+  .mx-pulse{width:8px;height:8px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 9px rgba(46,204,113,.9);animation:mxpulse 2s ease-in-out infinite}
+  @keyframes mxpulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .mx-focus-text{font-size:21px;font-weight:700;line-height:1.4;margin-top:7px}
+  .mx-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 20px}
+  .mx-tile{background:rgba(11,16,28,.72);border:1px solid rgba(212,175,55,.35);border-radius:10px;
+    padding:12px 10px;text-align:center;
+    box-shadow:0 0 14px rgba(212,175,55,.10), inset 0 0 18px rgba(212,175,55,.04)}
+  .mx-tile-num{font-size:23px;font-weight:800;letter-spacing:1px;color:var(--gold);
+    text-shadow:0 0 12px rgba(212,175,55,.45);white-space:nowrap}
+  .mx-tile-num.mx-warn{color:var(--orange);text-shadow:0 0 12px rgba(230,126,34,.45)}
+  .mx-tile-label{font-size:10px;letter-spacing:2px;color:var(--ink2);margin-top:3px}
   .mini-h{font-size:11px;letter-spacing:2.5px;color:var(--gold);font-weight:700;margin-bottom:9px}
-  .job{padding:9px 0;border-top:1px solid rgba(120,150,200,.08)}
-  .job:first-of-type{border-top:none;padding-top:0}
-  .job-top{display:flex;align-items:center;gap:9px}
-  .job-title{font-weight:700;font-size:15px}
+  .mx-skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+  .mx-skill{background:linear-gradient(180deg,rgba(20,28,48,.85),rgba(10,14,25,.92));
+    border:1px solid rgba(212,175,55,.38);border-radius:12px;padding:15px 16px;
+    box-shadow:0 0 16px rgba(212,175,55,.10), inset 0 1px 0 rgba(255,255,255,.05)}
+  .mx-skill-top{display:flex;align-items:flex-start;gap:9px}
+  .mx-skill-title{font-weight:800;font-size:16px;letter-spacing:.4px;line-height:1.3}
   .chip{margin-left:auto;flex:0 0 auto;font-size:10px;font-weight:700;letter-spacing:1.5px;padding:3px 9px;border-radius:999px;border:1px solid}
-  .chip-prog{color:var(--gold);border-color:var(--line)}
+  .chip-prog{color:var(--gold);border-color:var(--line);box-shadow:0 0 10px rgba(212,175,55,.18)}
   .chip-wait{color:var(--orange);border-color:rgba(230,126,34,.4)}
   .chip-done{color:var(--green);border-color:rgba(46,204,113,.4)}
-  .job-detail{color:var(--ink2);font-size:13px;line-height:1.5;margin-top:3px}
-  .job-since{color:var(--ink3);font-size:11px;margin-top:3px;letter-spacing:.5px}
-  .waitlist{margin:0;padding-left:18px;font-size:14px;line-height:1.65}
-  .feed{display:flex;gap:14px;padding:8px 0;border-top:1px solid rgba(120,150,200,.08);font-size:14px}
-  .feed-time{color:var(--ink3);font-size:12px;white-space:nowrap;min-width:158px;padding-top:2px}
-  .feed-text{line-height:1.5}
-  .muse-updated{color:var(--ink3);font-size:11px;margin-top:14px;letter-spacing:.5px}
-  @media (max-width:640px){.feed{flex-direction:column;gap:2px}.feed-time{min-width:0}}
+  .mx-skill-detail{color:var(--ink2);font-size:13px;line-height:1.5;margin-top:6px}
+  .mx-skill-since{color:var(--ink3);font-size:11px;margin-top:6px;letter-spacing:.5px}
+  .mx-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+  .mx-glass{background:rgba(10,15,27,.68);border:1px solid rgba(120,150,200,.18);border-radius:12px;padding:15px 17px}
+  .mx-wait{margin:0;padding-left:18px;font-size:14px;line-height:1.65}
+  .mx-wait li::marker{color:var(--gold)}
+  .mx-feed{display:flex;gap:14px;padding:8px 0;border-top:1px solid rgba(120,150,200,.08);font-size:14px}
+  .mx-feed:first-of-type{border-top:none;padding-top:2px}
+  .mx-feed-time{color:var(--ink3);font-size:12px;white-space:nowrap;min-width:158px;padding-top:2px}
+  .mx-feed-text{line-height:1.5}
+  @media (max-width:760px){.mx-cols{grid-template-columns:1fr}}
+  @media (max-width:640px){
+    .mx-feed{flex-direction:column;gap:2px}.mx-feed-time{min-width:0}
+    .mx-metrics{gap:7px}.mx-tile{padding:9px 5px}.mx-tile-num{font-size:16px}
+    .mx-tile-label{font-size:8.5px;letter-spacing:1.2px}
+    .mx-focus-text{font-size:17px}.mx-inner{padding:14px}
+  }
+  @media (prefers-reduced-motion: reduce){.mx-stars i,.mx-pulse{animation:none}}
   footer{margin-top:34px;text-align:center;color:var(--ink3);font-size:12px;line-height:1.7}
   footer .fb{color:var(--gold2);letter-spacing:3px;font-size:11px}
 </style>
@@ -86,7 +140,7 @@
   <div class="updated" id="updated"></div>
 
   <h2 id="muse">MUSE — THE LIVE BOARD</h2>
-  <div class="muse-panel"><div id="museBody"><div class="note">Reading Muse's board&hellip;</div></div></div>
+  <div class="mx-desk"><div class="mx-stars" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div><div class="mx-inner" id="museBody"><div class="note">Reading Muse's board&hellip;</div></div></div>
 
   <h2>THE AIS</h2>
   <div class="cards" id="ais"></div>
@@ -158,6 +212,25 @@ function fmtTime(iso){
   if (isNaN(d)) return esc(iso);
   return d.toLocaleString('en-US', { timeZone: 'America/New_York', dateStyle: 'medium', timeStyle: 'short' }) + ' ET';
 }
+function fmtShort(iso){
+  const d = new Date(iso);
+  if (isNaN(d)) return '';
+  return d.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit' });
+}
+async function fillServices(){
+  const el = document.getElementById('mxSvc');
+  if (!el) return;
+  try {
+    const r = await fetch('status.json', { cache: 'no-store' });
+    if (!r.ok) return;
+    const d = await r.json();
+    const up = Number(d.up_count), tot = Number(d.total);
+    if (isFinite(up) && isFinite(tot) && tot > 0) {
+      el.textContent = up + ' / ' + tot;
+      if (up < tot) el.classList.add('mx-warn');
+    }
+  } catch (e) { /* tile keeps its dash; the watchdog board below still shows the detail */ }
+}
 async function loadMuse(){
   const box = document.getElementById('museBody');
   try {
@@ -169,23 +242,30 @@ async function loadMuse(){
     const upd = Array.isArray(m.recent_updates) ? m.recent_updates : [];
     let h = '';
     if (m.current_focus)
-      h += '<div class="focus"><span class="focus-label">RIGHT NOW</span>' + esc(m.current_focus) + '</div>';
-    h += '<div class="muse-grid"><div><div class="mini-h">WORKING ON</div>' +
-      (work.length ? work.map(w => {
+      h += '<div class="mx-focus"><div class="mx-focus-label"><span class="mx-pulse"></span>RIGHT NOW</div>' +
+        '<div class="mx-focus-text">' + esc(m.current_focus) + '</div></div>';
+    h += '<div class="mx-metrics">' +
+      '<div class="mx-tile"><div class="mx-tile-num" id="mxSvc">&mdash;</div><div class="mx-tile-label">SERVICES UP</div></div>' +
+      '<div class="mx-tile"><div class="mx-tile-num">' + wait.length + '</div><div class="mx-tile-label">WAITING ON JAKOB</div></div>' +
+      '<div class="mx-tile"><div class="mx-tile-num">' + (m.updated_at ? esc(fmtShort(m.updated_at)) : '&mdash;') +
+        '</div><div class="mx-tile-label">BOARD UPDATED &middot; ET</div></div></div>';
+    h += '<div class="mini-h">WORKING ON</div>' +
+      (work.length ? '<div class="mx-skills">' + work.map(w => {
         const st = MUSE_ST[w.status] || ['—', 'chip-wait'];
-        return '<div class="job"><div class="job-top"><span class="job-title">' + esc(w.title) + '</span>' +
+        return '<div class="mx-skill"><div class="mx-skill-top"><span class="mx-skill-title">' + esc(w.title) + '</span>' +
           '<span class="chip ' + st[1] + '">' + st[0] + '</span></div>' +
-          (w.detail ? '<div class="job-detail">' + esc(w.detail) + '</div>' : '') +
-          (w.since ? '<div class="job-since">Since ' + fmtTime(w.since) + '</div>' : '') + '</div>';
-      }).join('') : '<div class="note">Nothing on the bench right now.</div>') + '</div>';
-    h += '<div><div class="mini-h">WAITING ON JAKOB</div>' +
-      (wait.length ? '<ul class="waitlist">' + wait.map(i => '<li>' + esc(i) + '</li>').join('') + '</ul>'
-                   : '<div class="note">Nothing waiting — the plate is clear.</div>') + '</div></div>';
-    if (upd.length)
-      h += '<div class="mini-h" style="margin-top:16px">LATEST FROM MUSE</div>' + upd.map(u =>
-        '<div class="feed"><div class="feed-time">' + fmtTime(u.time) + '</div><div class="feed-text">' + esc(u.text) + '</div></div>').join('');
-    if (m.updated_at) h += '<div class="muse-updated">Board updated ' + fmtTime(m.updated_at) + '</div>';
+          (w.detail ? '<div class="mx-skill-detail">' + esc(w.detail) + '</div>' : '') +
+          (w.since ? '<div class="mx-skill-since">Since ' + fmtTime(w.since) + '</div>' : '') + '</div>';
+      }).join('') + '</div>' : '<div class="note">Nothing on the bench right now.</div>');
+    h += '<div class="mx-cols"><div class="mx-glass"><div class="mini-h">WAITING ON JAKOB</div>' +
+      (wait.length ? '<ul class="mx-wait">' + wait.map(i => '<li>' + esc(i) + '</li>').join('') + '</ul>'
+                   : '<div class="note">Nothing waiting — the plate is clear.</div>') + '</div>';
+    h += '<div class="mx-glass"><div class="mini-h">LATEST FROM MUSE</div>' +
+      (upd.length ? upd.map(u =>
+        '<div class="mx-feed"><div class="mx-feed-time">' + fmtTime(u.time) + '</div><div class="mx-feed-text">' + esc(u.text) + '</div></div>').join('')
+                   : '<div class="note">No updates yet.</div>') + '</div></div>';
     box.innerHTML = h || '<div class="note">Muse\'s board is quiet right now.</div>';
+    fillServices();
   } catch (e) {
     box.innerHTML = '<div class="note">Muse\'s activity board isn\'t available right now — the service status above is still live.</div>';
   }
