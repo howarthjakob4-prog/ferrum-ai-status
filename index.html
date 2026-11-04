@@ -45,6 +45,27 @@
   .svc.down .state{color:var(--red)}
   .note{color:var(--ink2);font-size:13px;line-height:1.5}
   .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+  .muse-panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+  .focus{font-size:17px;font-weight:600;line-height:1.45}
+  .focus-label{display:block;font-size:11px;letter-spacing:2.5px;color:var(--gold);font-weight:700;margin-bottom:4px}
+  .muse-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 22px;margin-top:16px}
+  .mini-h{font-size:11px;letter-spacing:2.5px;color:var(--gold);font-weight:700;margin-bottom:9px}
+  .job{padding:9px 0;border-top:1px solid rgba(120,150,200,.08)}
+  .job:first-of-type{border-top:none;padding-top:0}
+  .job-top{display:flex;align-items:center;gap:9px}
+  .job-title{font-weight:700;font-size:15px}
+  .chip{margin-left:auto;flex:0 0 auto;font-size:10px;font-weight:700;letter-spacing:1.5px;padding:3px 9px;border-radius:999px;border:1px solid}
+  .chip-prog{color:var(--gold);border-color:var(--line)}
+  .chip-wait{color:var(--orange);border-color:rgba(230,126,34,.4)}
+  .chip-done{color:var(--green);border-color:rgba(46,204,113,.4)}
+  .job-detail{color:var(--ink2);font-size:13px;line-height:1.5;margin-top:3px}
+  .job-since{color:var(--ink3);font-size:11px;margin-top:3px;letter-spacing:.5px}
+  .waitlist{margin:0;padding-left:18px;font-size:14px;line-height:1.65}
+  .feed{display:flex;gap:14px;padding:8px 0;border-top:1px solid rgba(120,150,200,.08);font-size:14px}
+  .feed-time{color:var(--ink3);font-size:12px;white-space:nowrap;min-width:158px;padding-top:2px}
+  .feed-text{line-height:1.5}
+  .muse-updated{color:var(--ink3);font-size:11px;margin-top:14px;letter-spacing:.5px}
+  @media (max-width:640px){.feed{flex-direction:column;gap:2px}.feed-time{min-width:0}}
   footer{margin-top:34px;text-align:center;color:var(--ink3);font-size:12px;line-height:1.7}
   footer .fb{color:var(--gold2);letter-spacing:3px;font-size:11px}
 </style>
@@ -63,6 +84,9 @@
     <div class="detail" id="bannerDetail">Reading the latest patrol state.</div>
   </div>
   <div class="updated" id="updated"></div>
+
+  <h2 id="muse">MUSE — THE LIVE BOARD</h2>
+  <div class="muse-panel"><div id="museBody"><div class="note">Reading Muse's board&hellip;</div></div></div>
 
   <h2>THE AIS</h2>
   <div class="cards" id="ais"></div>
@@ -120,6 +144,54 @@ async function load(){
 }
 load();
 setInterval(load, 60000);
+
+// --- Muse activity board: fed by muse-activity.json (written by
+// muse_log.py). Kept fully separate from the watchdog status above:
+// if the board data is missing or broken, this section says so
+// plainly and the status board is unaffected.
+const MUSE_ST = { 'in progress': ['IN PROGRESS', 'chip-prog'], 'waiting': ['WAITING', 'chip-wait'], 'done': ['DONE', 'chip-done'] };
+function esc(s){
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+function fmtTime(iso){
+  const d = new Date(iso);
+  if (isNaN(d)) return esc(iso);
+  return d.toLocaleString('en-US', { timeZone: 'America/New_York', dateStyle: 'medium', timeStyle: 'short' }) + ' ET';
+}
+async function loadMuse(){
+  const box = document.getElementById('museBody');
+  try {
+    const res = await fetch('muse-activity.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const m = await res.json();
+    const work = Array.isArray(m.working_on) ? m.working_on : [];
+    const wait = Array.isArray(m.waiting_on_jakob) ? m.waiting_on_jakob : [];
+    const upd = Array.isArray(m.recent_updates) ? m.recent_updates : [];
+    let h = '';
+    if (m.current_focus)
+      h += '<div class="focus"><span class="focus-label">RIGHT NOW</span>' + esc(m.current_focus) + '</div>';
+    h += '<div class="muse-grid"><div><div class="mini-h">WORKING ON</div>' +
+      (work.length ? work.map(w => {
+        const st = MUSE_ST[w.status] || ['—', 'chip-wait'];
+        return '<div class="job"><div class="job-top"><span class="job-title">' + esc(w.title) + '</span>' +
+          '<span class="chip ' + st[1] + '">' + st[0] + '</span></div>' +
+          (w.detail ? '<div class="job-detail">' + esc(w.detail) + '</div>' : '') +
+          (w.since ? '<div class="job-since">Since ' + fmtTime(w.since) + '</div>' : '') + '</div>';
+      }).join('') : '<div class="note">Nothing on the bench right now.</div>') + '</div>';
+    h += '<div><div class="mini-h">WAITING ON JAKOB</div>' +
+      (wait.length ? '<ul class="waitlist">' + wait.map(i => '<li>' + esc(i) + '</li>').join('') + '</ul>'
+                   : '<div class="note">Nothing waiting — the plate is clear.</div>') + '</div></div>';
+    if (upd.length)
+      h += '<div class="mini-h" style="margin-top:16px">LATEST FROM MUSE</div>' + upd.map(u =>
+        '<div class="feed"><div class="feed-time">' + fmtTime(u.time) + '</div><div class="feed-text">' + esc(u.text) + '</div></div>').join('');
+    if (m.updated_at) h += '<div class="muse-updated">Board updated ' + fmtTime(m.updated_at) + '</div>';
+    box.innerHTML = h || '<div class="note">Muse\'s board is quiet right now.</div>';
+  } catch (e) {
+    box.innerHTML = '<div class="note">Muse\'s activity board isn\'t available right now — the service status above is still live.</div>';
+  }
+}
+loadMuse();
+setInterval(loadMuse, 60000);
 </script>
 </body>
 </html>
