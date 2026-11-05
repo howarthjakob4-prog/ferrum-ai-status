@@ -1,12 +1,26 @@
 {
- "updated_at": "2026-11-05T12:35:05.685246+00:00",
+ "updated_at": "2026-11-05T13:30:12.208454+00:00",
  "source": "Watchdog v3.6 \u2014 last confirmed patrol state",
  "overall": "outage",
- "up_count": 19,
+ "up_count": 5,
  "total": 21,
  "down_names": [
   "Jarvis \u2014 phone companion",
-  "SFX Forge (lab)"
+  "Echo \u2014 Wren link",
+  "Onyx \u2014 app",
+  "Onyx \u2014 brain",
+  "Ferrum Computer",
+  "Ferrum Horizon",
+  "Ticket Center",
+  "Ferrum Studio",
+  "Ferrum Relay",
+  "Forge \u2014 studio UI",
+  "Ferrum Anvil \u2014 studio",
+  "Ferrum Anvil \u2014 tool link",
+  "AnythingLLM \u2014 web",
+  "AnythingLLM \u2014 collector",
+  "SFX Forge (lab)",
+  "SoftGPU (lab)"
  ],
  "ais": [
   {
@@ -27,12 +41,12 @@
   },
   {
    "name": "Echo",
-   "status": "operational",
+   "status": "partial",
    "services": [
     {
      "key": "echo-wren",
      "name": "Echo \u2014 Wren link",
-     "up": true
+     "up": false
     },
     {
      "key": "echo-phone",
@@ -53,17 +67,17 @@
   },
   {
    "name": "Onyx",
-   "status": "operational",
+   "status": "down",
    "services": [
     {
      "key": "onyx",
      "name": "Onyx \u2014 app",
-     "up": true
+     "up": false
     },
     {
      "key": "onyx-brain",
      "name": "Onyx \u2014 brain",
-     "up": true
+     "up": false
     }
    ]
   },
@@ -92,53 +106,53 @@
  "board": [
   {
    "name": "Ferrum Platform",
-   "status": "operational",
+   "status": "down",
    "services": [
     {
      "key": "ferrum",
      "name": "Ferrum Computer",
-     "up": true
+     "up": false
     },
     {
      "key": "ferrum-horizon",
      "name": "Ferrum Horizon",
-     "up": true
+     "up": false
     },
     {
      "key": "ferrum-relay",
      "name": "Ferrum Relay",
-     "up": true
+     "up": false
     },
     {
      "key": "ferrum-studio",
      "name": "Ferrum Studio",
-     "up": true
+     "up": false
     },
     {
      "key": "ticket-center",
      "name": "Ticket Center",
-     "up": true
+     "up": false
     }
    ]
   },
   {
    "name": "Ferrum Anvil",
-   "status": "operational",
+   "status": "down",
    "services": [
     {
      "key": "ferrum-anvil",
      "name": "Ferrum Anvil \u2014 studio",
-     "up": true
+     "up": false
     },
     {
      "key": "ferrum-anvil-mcp",
      "name": "Ferrum Anvil \u2014 tool link",
-     "up": true
+     "up": false
     },
     {
      "key": "forge-ui",
      "name": "Forge \u2014 studio UI",
-     "up": true
+     "up": false
     }
    ]
   },
@@ -149,12 +163,12 @@
     {
      "key": "anythingllm-api",
      "name": "AnythingLLM \u2014 collector",
-     "up": true
+     "up": false
     },
     {
      "key": "anythingllm-web",
      "name": "AnythingLLM \u2014 web",
-     "up": true
+     "up": false
     },
     {
      "key": "ollama",
@@ -169,7 +183,7 @@
     {
      "key": "softgpu-lab",
      "name": "SoftGPU (lab)",
-     "up": true
+     "up": false
     }
    ]
   }
