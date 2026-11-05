@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-05T01:47:59.497523+00:00",
+ "updated_at": "2026-11-05T03:07:22.029554+00:00",
  "current_focus": "Echo is entered in the Meta Global AI Developer Hackathon \u2014 judging runs through Nov 8, winners Nov 9",
  "working_on": [
   {
@@ -27,6 +27,10 @@
   "Channel name choice: keep 'Saint Jakob' or change back to 'Jakob Howarth'"
  ],
  "recent_updates": [
+  {
+   "time": "2026-11-05T03:07:22.029543+00:00",
+   "text": "Jarvis Offline Mode works: local Whisper ears + local Piper voice + local brain completed a full speak-hear-answer-speak loop with zero outside connections"
+  },
   {
    "time": "2026-11-05T01:47:59.497515+00:00",
    "text": "Echo hackathon entry submitted and confirmed before the deadline|done|Ferrum team entry is in; the demo video is live for the judges"
